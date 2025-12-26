@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrashTag</title>
+<style>
+    /* Basis styling */
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        min-height: 100%;
+        position: relative;
+        overflow-x: hidden;
+        background: #12d175;
+    }
+
+    /* Achtergrond prullenbakjes */
+    body::before {
+        content: '🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 40px;
+        opacity: 0.05;
+        line-height: 80px;
+        pointer-events: none;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    /* Container */
+    .box {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 10px;
+        position: relative; /* boven de body::before */
+        z-index: 1;
+    }
+
+    /* Kaarten */
+    .card {
+        position: relative; /* belangrijk voor z-index */
+        z-index: 1;         /* boven de achtergrond */
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        margin: 10px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Items */
+    .item {
+        padding: 10px;
+        background: #f0f0f0;
+        border-radius: 8px;
+        margin: 5px 0;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .item:hover {
+        background: #10b981;
+        color: white;
+        transform: scale(1.05);
+    }
+
+    /* Knoppen */
+    .btn {
+        background: #10b981;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 16px;
+    }
+
+    .btn:hover { transform: scale(1.05); }
+    .btn:active { transform: scale(0.95); }
+
+    /* Modal styling */
+    .hide { display: none !important; }
+    .modal {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s;
+        z-index: 1000;
+    }
+
+    .modal-box {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 350px;
+        animation: slideUp 0.3s;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        transition: border 0.3s;
+    }
+
+    input:focus, select:focus {
+        border-color: #12d175;
+        outline: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Toast notificatie */
+    .toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #12d175;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        animation: slideIn 0.5s;
+        z-index: 2000;
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(400px); }
+        to { transform: translateX(0); }
+    }
+
+
+
+    .box {
+        max-width: 440px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    .card { width: 100% !important; max-width: 420px !important; }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<div class="box">
+    <div class="card">
+        <h1>🗑️ TrashTag</h1>
+    </div>
+
+    <div class="card">
+        <h3>📅 Ophaaldata</h3>
+        <div class="item">🗑️ Restafval - Morgen 7:00</div>
+        <div class="item">📄 Papier - Vrijdag 7:00</div>
+    </div>
+
+    <div class="card">
+        <button class="btn" onclick="openModal()">⚠️ Meld Probleem</button>
+    </div>
+
+    <div class="card">
+        <h3>💡 Tips</h3>
+        <div class="item">🍌 Bananenschil → GFT</div>
+        <div class="item">🥤 Plastic fles → PMD</div>
+        <div class="item">📰 Krant → Papier</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal hide">
+    <div class="modal-box">
+        <h2>⚠️ Meld Probleem</h2>
+        
+        
+<form id="myForm" enctype="multipart/form-data">
+  <select name="probleem">
+    <option>Volle container</option>
+    <option>Niet opgehaald</option>
+    <option>Beschadigd</option>
+    <option>Groot afval</option>
+    <option>Overig</option>
+  </select>
+  <input type="text" name="toelichting" placeholder="Toelichting (Optioneel)">
+  <input type="text" name="locatie" placeholder="Locatie">
+  <input type="file" name="bestand" required>
+  <button class="btn" onclick="verstuur()">Verstuur</button>
+        <button class="btn" style="background: #ccc; margin-top: 5px;" onclick="closeModal()">Annuleer</button>
+
+</form>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('modal').classList.remove('hide');
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hide');
+    }
+
+    function verstuur() {
+        closeModal();
+        var toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = '✓ Melding verstuurd!';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if(e.target.id === 'modal') closeModal();
+    });
+    const form = document.getElementById("myForm");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = Object.fromEntries(new FormData(form).entries());
+
+            const res = await fetch("/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await res.json();
+            document.getElementById("response").textContent = result.message;
+        });
+</script>
+
+</body>
+</html>

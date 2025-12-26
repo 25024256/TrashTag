@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.BottomNavigation?>
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField alignment="CENTER" layoutX="-3.0" layoutY="1.0" prefHeight="37.0" prefWidth="319.0" text="TrashTag" />
+      <Button layoutX="258.0" layoutY="-8.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="54.0" text="Menu&#10;" />
+      <BottomNavigation layoutX="1.0" layoutY="492.0" prefHeight="46.0" prefWidth="312.0">
+         <actionItems>
+            <BottomNavigationButton>
+               <graphic>
+                  <Icon content="HOME" />
+               </graphic>
+            </BottomNavigationButton>
+            <BottomNavigationButton>
+               <graphic>
+                  <Icon content="ACCOUNT_CIRCLE" />
+               </graphic>
+            </BottomNavigationButton>
+         </actionItems>
+      </BottomNavigation>
+   </children>
+</Pane>
